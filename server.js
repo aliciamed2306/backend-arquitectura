@@ -16,4 +16,19 @@ const connection = mysql.createConnection({
   database: dbName
 });
 
-// ... aquí sigue tu código de app.get y app.listen
+// Prueba de conexión opcional para verificar en los logs
+connection.connect((err) => {
+  if (err) {
+    console.error('Error connecting to MySQL:', err);
+    return;
+  }
+  console.log('Connected to MySQL database successfully!');
+});
+
+app.get('/', (req, res) => {
+  res.send('¡Hola desde mi backend en OpenShift conectado a MySQL!');
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
