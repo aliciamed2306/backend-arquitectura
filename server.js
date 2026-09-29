@@ -1,3 +1,9 @@
+const express = require('express');
+const mysql = require('mysql2');
+
+const app = express();
+const port = 8080;
+
 const dbHost = process.env.DB_HOST || 'localhost';
 const dbUser = process.env.DB_USER || 'root';
 const dbPassword = process.env.DB_PASSWORD || 'secretpassword';
@@ -9,3 +15,5 @@ const connection = mysql.createConnection({
   password: dbPassword,
   database: dbName
 });
+
+// ... aquí sigue tu código de app.get y app.listen
