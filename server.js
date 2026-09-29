@@ -9,8 +9,6 @@ const dbUser = process.env.DB_USER || 'root';
 const dbPassword = process.env.DB_PASSWORD || 'secretpassword';
 const dbName = process.env.DB_NAME || 'sampledb';
 
-console.log(`Intentando conectar a MySQL en el host: ${dbHost} con el usuario: ${dbUser}`);
-
 const connection = mysql.createConnection({
   host: dbHost,
   user: dbUser,
@@ -18,12 +16,13 @@ const connection = mysql.createConnection({
   database: dbName
 });
 
+// Prueba de conexión opcional para verificar en los logs
 connection.connect((err) => {
   if (err) {
-    console.error('ERROR CRITICO DE CONEXIÓN A MYSQL:', err);
+    console.error('Error connecting to MySQL:', err);
     return;
   }
-  console.log('¡Conexión a MySQL establecida con éxito!');
+  console.log('Connected to MySQL database successfully!');
 });
 
 app.get('/', (req, res) => {
@@ -31,5 +30,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Servidor web corriendo y escuchando en el puerto ${port}`);
+  console.log(`Server running on port ${port}`);
 });
